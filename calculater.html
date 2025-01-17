@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body 
+        {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f4f7;
+        }
+
+        .container
+        {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h1
+        {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input
+        {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .buttons
+        {
+            margin: 20px 0;
+        }
+
+        button{
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover
+        {
+            background-color: #0056b3;
+        }
+
+        #result
+        {
+            font-size: 18px;
+            color: #555;
+            margin-top: 20px;
+        }
+
+
+    </style>
+
+    <script>
+        function calculate(operation){
+            const num1=parseFloat(document.getElementById("input1").value);
+            const num2=parseFloat(document.getElementById("input2").value);
+            const resultElement=document.getElementById("result");
+        
+        if(isNaN(num1)||isNaN(num2)){
+            resultElement.textContent="please enter valid number!!!";
+            return;
+        }
+        let result;
+
+        switch(operation){
+            case 'add':
+            result= num1+num2;
+            break;
+
+            case 'sub':
+            result= num1-num2;
+            break;
+
+            case 'mult':
+            result= num1*num2;
+            break;
+
+            case 'div':
+                if(num2==0){
+                    resultElement.textContent="divide by zero is not allowed!!!";
+                    return
+                }
+            result= num1/num2;
+            break;
+
+            default:
+                result= "Invalid Operation!!!";
+            }
+                resultElement.textContent=`Result: ${result}`;
+    
+        }
+
+        
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Simple Calculator</h1>
+        <input type ="number" id ="input1" placeholder ="Enter first number">
+        <input type ="number" id ="input2" placeholder ="Enter second number">
+        <div class="buttons">
+            <button onclick ="calculate('add')">Add</button>
+            <button onclick ="calculate('sub')">Subtract</button>
+            <button onclick ="calculate('mult')">Multiply</button>
+            <button onclick ="calculate('div')">Divide</button>
+        </div>
+        <p id ="result">Result will be displayed here</p>
+    </div>
+</body>
+</html>
